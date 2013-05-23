@@ -34,4 +34,12 @@ class wordpress::install{
     source=>"puppet:///modules/wordpress/.htaccess",
     mode => 666
   }
+
+  file{
+    "/etc/apache2/sites-available/default":
+    source=>"puppet:///modules/wordpress/vhost",
+    force=> true,
+    require => Package['apache2'],
+    notify => Service['apache2'],
+  }
 }

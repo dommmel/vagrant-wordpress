@@ -4,6 +4,11 @@ class apache2::install{
     ensure => running,
     require => Package["apache2"],
   }
+  exec {"enable_mod_rewrite":
+    command=>"/usr/sbin/a2enmod rewrite",
+    notify => Service['apache2'],
+    require => Package['apache2']
+  }
   file { '/var/www':
     ensure => link,
     target => "/vagrant/www",
