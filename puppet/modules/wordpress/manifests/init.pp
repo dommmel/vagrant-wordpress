@@ -27,6 +27,11 @@ class wordpress::install{
   } ->
   file{
     "/vagrant/www/wordpress/wp-config.php":
-    source=>"puppet:///modules/wordpress/wp-config.php"
+    source=>"puppet:///modules/wordpress/wp-config.php",
+  } ->
+  file{
+    "/vagrant/www/wordpress/.htaccess":
+    source=>"puppet:///modules/wordpress/.htaccess",
+    mode => 666
   }
 }
